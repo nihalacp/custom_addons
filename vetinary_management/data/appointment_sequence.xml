@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.sequence" id="seq_vetinary_appointment">
+        <field name="name">Appointment Reference</field>
+        <field name="code">vetinary.appointments</field>
+        <field name="prefix">VT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>

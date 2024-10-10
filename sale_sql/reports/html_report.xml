@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_html_report_sale_sql" model="ir.actions.report">
+        <field name="name">HTML Report</field>
+        <field name="model">sale.sql.view</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">sale_sql.html_report_sale_sql</field>
+        <field name="report_file">sale_sql.html_report_sale_sql</field>
+        <field name="binding_model_id" ref="sale_sql.model_sale_sql_view"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

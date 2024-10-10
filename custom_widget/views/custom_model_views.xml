@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_form_custom_model" model="ir.ui.view">
+        <field name="name">custom.model.form</field>
+        <field name="model">custom.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <!-- Apply the custom widget to this field -->
+                        <field name="color" widget="color_picker"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_custom_model" model="ir.ui.view">
+        <field name="name">custom.model.tree</field>
+        <field name="model">custom.model</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="color" widget="color"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action to open the form and tree views -->
+    <record id="action_custom_model" model="ir.actions.act_window">
+        <field name="name">Custom Model</field>
+        <field name="res_model">custom.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem 
+        id="menu_custom_model_root"
+        name="Custom Menu">
+        <menuitem
+            id="menu_custom_model"
+            name="Custom Model"
+            action="action_custom_model"
+        />
+    </menuitem>
+</odoo>

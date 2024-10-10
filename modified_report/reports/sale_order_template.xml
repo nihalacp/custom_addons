@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="new_report_saleorder_inherit">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="modified_report.modified_layout">
+                    <div class="page">
+                        <div style="padding-top: 20px;">
+                        <div class="address-section">
+                            <div class="row mt32 mb32">
+                                <div class="col-4">
+                                    <strong style="color: #0056b3; text-decoration: underline;">BILL TO: </strong>
+                                        <p t-field="o.partner_invoice_id.street"/>
+                                        <p t-field="o.partner_invoice_id.city"/>
+                                        <p t-field="o.partner_invoice_id.zip"/>
+                                        <p t-field="o.partner_invoice_id.name"/>
+                                </div>
+                                <div class="col-4" style="text-align:center;">
+                                    <strong style="color: #0056b3; text-decoration: underline;">SHIP TO:</strong>
+                                        <p t-field="o.partner_shipping_id.street"/>
+                                        <p t-field="o.partner_shipping_id.city"/>
+                                        <p t-field="o.partner_shipping_id.zip"/>
+                                        <p t-field="o.partner_shipping_id.name"/>
+                                </div>
+                                <div class="col-4" style="text-align:right;">
+                                    <h5><strong style="color: #0056b3;">Quotation:</strong><t t-esc="o.name"/></h5>
+                                    <p><strong style="color: #0056b3;">Customer:</strong> <span t-field="o.partner_id.name"/></p>
+                                    <p><strong style="color: #0056b3;">Quotation Date:</strong> <t t-esc="o.date_order"/></p>
+                                </div>
+                            </div>
+                        </div>
+                        <table  class="table table-bordered" width="100%">
+                            <thead>
+                                <tr style="background-color: #0056b3;">
+                                    <th name="th_product"><strong>Product</strong></th>
+                                    <th name="th_product_image"><strong>Product Image</strong></th>
+                                    <th name="th_description"><strong>Description</strong></th>
+                                    <th name="th_taxes"><strong>Taxes</strong></th>
+                                    <th name="th_quantity" class="text-end"><strong>Qty</strong></th>
+                                    <th name="th_price_unit" class="text-end"><strong>Unit Price</strong></th>
+                                    <th name="th_amount" class="text-end"><strong>Amount</strong></th>    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <tr>
+                                        <td><span t-field="line.product_id"/></td>
+                                        <td style="width:100px;height:50px"><span t-field="line.image_field" t-options='{"widget": "image"}'/></td>
+                                        <td><span t-field="line.name"/></td>
+                                        <td><span t-field="line.tax_id"/></td>
+                                        <td><span t-field="line.product_uom_qty"/></td>
+                                        <td><span t-field="line.price_unit"/></td>
+                                        <td><span t-field="line.price_subtotal"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div class="col-12" style="text-align:right;">
+                            <p><strong>Total Amount:</strong> <span t-field="o.amount_total"/></p>
+                        </div>
+                    </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

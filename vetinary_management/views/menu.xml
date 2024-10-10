@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_vetinary_root"
+              name="Pet Care"
+              web_icon="vetinary_management,static/description/icon.png"
+              sequence="35"
+    />
+
+    <menuitem id="menu_vetinary_management"
+              name="Vetinary"
+              parent="menu_vetinary_root"
+    />
+
+    <menuitem id="menu_pets"
+              name="Pet"
+              parent="menu_vetinary_management"
+              action="action_vetinary_pet"
+    />
+
+    <menuitem id="menu_owner"
+              name="Owner"
+              parent="menu_vetinary_management"
+              action="action_vetinary_owner"
+    />
+
+    <menuitem id="menu_appointments"
+              name="Appointments"
+              parent="menu_vetinary_management"
+              action="action_vetinary_appointments"
+    />
+
+    <menuitem id="menu_reports"
+              name="Reports"
+              parent="menu_vetinary_root"
+    />
+
+    <menuitem id="menu_excel_report"
+              name="Excel Report"
+              parent="menu_reports"
+              action="action_appointment_excel_report"
+    />
+
+</odoo>

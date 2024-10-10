@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_map_contact_list" model="ir.ui.view">
+        <field name="name">view.map.contact.list</field>
+        <field name="model">map.contact</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="age"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_map_contact_lmap" model="ir.ui.view">
+        <field name="name">view.map.contact.lmap</field>
+        <field name="model">map.contact</field>
+        <field name="arch" type="xml">
+            <lmap/>
+        </field>
+    </record>
+
+    <record id="view_map_contact_form" model="ir.ui.view">
+        <field name="name">view.map.contact.form</field>
+        <field name="model">map.contact</field>
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field> -->
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_map_contact" model="ir.actions.act_window">
+            <field name="name">Contacts</field>
+            <field name="res_model">map.contact</field>
+            <field name="view_mode">tree,form,lmap</field>
+    </record>
+
+    <menuitem 
+        id="menu_contact"
+        name="Map View">
+        <menuitem
+            id="menu_map_contacts"
+            name="Contacts"
+            action="action_map_contact"
+        />
+    </menuitem>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- prescription Email Template -->
+        <record id="prescription_email_template" model="mail.template">
+            <field name="name">Prescription Email Template</field>
+            <field name="subject">Your Prescription has been Submitted</field>
+            <field name="model_id" ref="om_hospital.model_hospital_prescription"/>
+            <field name="body_html">
+                <![CDATA[
+                    <p>Hello,</p>
+                    <p>Your prescription has been successfully submitted.</p>
+                    <p>Thank you for using our service.</p>
+                    <p>Best regards,<br/>Your Company</p>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

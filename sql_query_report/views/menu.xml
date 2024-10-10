@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="sale_sql_report_menu"
+                name="Sql Query Report"
+                parent="sale.menu_sale_report"
+                action="action_sql_query_report_sale_xlsx"
+                sequence="70"/>
+
+</odoo>

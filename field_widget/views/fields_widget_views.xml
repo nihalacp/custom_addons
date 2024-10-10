@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="fields_widget_form_view" model="ir.ui.view">
+        <field name="name">fields.widget.form</field>
+        <field name="model">fields.widget</field>
+        <field name="arch" type="xml">
+            <form>
+            <sheet>
+            <group>
+                <field name="name"/>
+                <field name="state"
+                    widget="selection"/>
+                <field name="state"
+                    widget="radio"/>
+                <field name="state"
+                    widget="selection_badge"/>
+                <field name="kanban_state"
+                    widget="state_selection"/>
+                <field name="priority"
+                    widget="priority"/>
+                <field name="is_active"
+                    widget="boolean"/>
+                <field name="is_favorite"
+                    widget="boolean_favorite"/>
+                <field name="is_subscribed"
+                    widget="boolean_icon"/>
+                <field name="is_present"
+                    widget="boolean_toggle"/>
+                <field name="pdf"
+                    widget="pdf_viewer"/>
+                <field name="youtube"
+                    widget="CopyClipboardURL"/>
+                <field name="website"
+                    widget="CopyClipboardButton"/>
+                <field name="token"
+                    widget="CopyClipboardChar"/>
+                <field name="notes"
+                    widget="CopyClipboardText"/> 
+                <field name="signature"
+                    widget="signature"/>          
+            </group>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="fields_widget_action" model="ir.actions.act_window">
+            <field name="name">Fields Widget</field>
+            <field name="res_model">fields.widget</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <menuitem 
+        id="fields_widget_menu_root"
+        name="Fields Widget">
+        <menuitem
+            id="fields_widget_menu"
+            name="Home"
+            action="fields_widget_action"
+        />
+    </menuitem>
+</odoo>

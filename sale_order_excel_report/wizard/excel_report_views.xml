@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_sales_report_form" model="ir.ui.view">
+        <field name="name">sales.report.wizard.form</field>
+        <field name="model">sales.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Report">
+                <group>
+                    <field name="customer_name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="product_id"/>
+                    <field name="confirmed"/>
+                </group>
+                <footer>
+                    <button name="action_html_report_view" type="object" string="View" class="btn-primary"/>
+                    <button name="action_print_excel_report" type="object" string="Print Excel" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sales_report" model="ir.actions.act_window">
+        <field name="name">Sales Report</field>
+        <field name="res_model">sales.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_sales_report_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

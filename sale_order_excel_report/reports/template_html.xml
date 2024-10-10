@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_html_sale_order">
+        <t t-call="web.html_container">
+            <div class="text-center">
+                <h4>Sales Order HTML Report</h4>
+            </div>
+                <t t-foreach="docs" t-as="o">
+                    <div class="page"> 
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="bg-warning">Quotation</th>
+                                    <th class="bg-warning">Customer</th>
+                                    <th class="bg-warning">Order Date</th>
+                                    <th class="bg-warning">Total Amount</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <tr>
+                                    <td><t t-esc="o.name or 'N/A'"/></td>
+                                    <td><t t-esc="o.partner_id.name"/></td>
+                                    <td><t t-esc="o.date_order.strftime('%d/%m/%Y')"/></td>
+                                    <td class="text-right"><t t-esc="o.amount_total or 0"/></td>
+                                </tr>
+                            </tbody>
+                           
+                        </table> 
+                    </div>
+                </t>
+        </t>
+    </template>
+</odoo>

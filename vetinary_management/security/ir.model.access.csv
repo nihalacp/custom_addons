@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_vetinary_pet,access.vetinary.pet,model_vetinary_pet,base.group_user,1,1,1,1
+access_vetinary_owner,access.vetinary.owner,model_vetinary_owner,base.group_user,1,1,1,1
+access_vetinary_appointments,access.vetinary.appointments,model_vetinary_appointments,base.group_user,1,1,1,1
+access_vet_prescription_line,access.vet.prescription.line,model_vet_prescription_line,base.group_user,1,1,1,1
+access_appointment_report_wizard,access.appointment.report.wizard,model_appointment_report_wizard,base.group_user,1,1,1,1

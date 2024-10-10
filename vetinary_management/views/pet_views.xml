@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_vetinary_pet_tree" model="ir.ui.view">
+            <field name="name">vetinary.pet.tree</field>
+            <field name="model">vetinary.pet</field>
+            <field name="arch" type="xml">
+                <tree string="Pets">
+                    <field name="name"/>
+                    <field name="species"/>
+                    <field name="breed"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_vetinary_pet_form" model="ir.ui.view">
+        <field name="name">vetinary.pet.form</field>
+        <field name="model">vetinary.pet</field>
+        <field name="arch" type="xml">
+            <form string="Pet">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="species"/>
+                            <field name="breed"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                            <field name="weight"/>
+                            <field name="owner_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_vetinary_pet" model="ir.actions.act_window">
+            <field name="name">Pet</field>
+            <field name="res_model">vetinary.pet</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new pet
+              </p>  
+            </field>
+    </record>
+
+    
+</odoo>

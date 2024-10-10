@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_hospital_root"
+              name="HMS"
+              web_icon="om_hospital,static/description/icon.png"
+              sequence="35"
+    />
+              <!-- groups="om_hospital.group_hospital_manager" -->
+    
+                
+
+    <menuitem id="menu_frontdesk"
+              name="Front Desk"
+              parent="menu_hospital_root"
+    />
+
+    <menuitem id="menu_billing"
+              name="Billing"
+              parent="menu_hospital_root"
+    />
+
+    <menuitem id="menu_patients"
+              name="Patients"
+              parent="menu_frontdesk"
+              action="action_hospital_patient"
+    />
+
+    <menuitem id="menu_patients_readonly"
+              name="View Patients"
+              parent="menu_frontdesk"
+              action="action_hospital_readonly_patient"
+    />
+
+    <menuitem id="menu_appointment"
+              name="Appointments"
+              parent="menu_frontdesk"
+              action="action_hospital_appointment"
+    />
+
+    <menuitem id="menu_appointment_line"
+              name="Appointment Lines"
+              parent="menu_frontdesk"
+              action="action_hospital_appointment_line"
+    />
+
+    <menuitem id="menu_prescription"
+              name="Prescription"
+              parent="menu_frontdesk"
+              action="action_hospital_prescription"
+    />
+
+    <menuitem id="menu_create_appointment"
+              name="Create Appointment"
+              parent="menu_frontdesk"
+              action="action_create_appointment"
+    />
+    
+    <menuitem id="menu_configuration"
+              name="configuration"
+              parent="menu_hospital_root"
+    />
+
+    <menuitem id="menu_patient_tag"
+              name="Tags"
+              parent="menu_configuration"
+              action="action_patient_tag"
+    />
+
+    <menuitem id="menu_reports"
+              name="Reports"
+              parent="menu_hospital_root"
+    />
+
+    <menuitem id="menu_excel_report"
+              name="Excel Report"
+              parent="menu_reports"
+              action="action_patient_excel_report"
+    />
+
+
+    <menuitem id="menu_invoicing"
+              name="Invoices"
+              parent="menu_billing"
+              action="account.action_move_out_invoice_type"
+    />
+
+    <menuitem id="menu_payments"
+              name="Payments"
+              parent="menu_billing"
+              action="account.action_account_payments"
+    />
+</odoo>
+

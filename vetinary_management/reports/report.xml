@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_vetinary_appointments" model="ir.actions.report">
+        <field name="name">Appointment</field>
+        <field name="model">vetinary.appointments</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vetinary_management.report_vetinary_appointments</field>
+        <field name="report_file">vetinary_management.report_vetinary_appointments</field>
+        <field name="binding_model_id" ref="vetinary_management.model_vetinary_appointments"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_appointment_excel_report_xlsx" model="ir.actions.report">
+        <field name="name">Excel Report</field>
+        <field name="model">appointment.report.wizard</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">vetinary_management.appointment_excel_report_xls</field>
+        <field name="report_file">vetinary_management.appointment_excel_report_xls</field>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

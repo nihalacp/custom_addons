@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="sale_sql_view_menu"
+                name="Sales Sql View"
+                parent="sale.menu_sale_report"
+                action="sale_sql_view_action"
+                sequence="60"/>
+
+</odoo>

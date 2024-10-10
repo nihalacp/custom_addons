@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hospital_appointment_tree" model="ir.ui.view">
+            <field name="name">hospital.appointment.tree</field>
+            <field name="model">hospital.appointment</field>
+            <field name="arch" type="xml">
+                <tree string="Appointments">
+                    <field name="reference" readonly="True"/>
+                    <field name="patient_id"/>
+                    <field name="create_uid" groups="om_hospital.group_hospital_doctors"/>
+                    <field name="date_appointment" optional="show"/>
+                    <field name="note" optional="hide"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_hospital_appointment_form" model="ir.ui.view">
+            <field name="name">hospital.appointment.form</field>
+            <field name="model">hospital.appointment</field>
+            <field name="arch" type="xml">
+                <form string="Appointments">
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" invisible="state != 'draft'" class="oe_highlight"/>
+                        <!-- <button name="action_send_mail" type="object" string="Send Mail" class="oe_highlight" data-hotkey="m"/> -->
+                        <button name="action_ongoing" type="object" string="Ongoing" invisible="state != 'confirmed'" class="oe_highlight"/>
+                        <button name="action_done" type="object" string="Done" invisible="state != 'ongoing'" class="oe_highlight"/>
+                        <button name="action_cancel" type="object" string="Cancel" invisible="state == 'done'" class="oe_highlight"/>
+                        <button name="action_create_prescription" type="object" string="Create Prescription" class="oe_highlight" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,ongoing,done"/>
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="reference" readonly="True"/>
+                                <field name="patient_id"/>
+                                <field name="date_of_birth"/>
+                                <field name="date_appointment"/>
+                            </group>
+                            <group>
+                                <field name="total_qty"/>
+                                <field name="create_uid" groups="om_hospital.group_hospital_doctors"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="appointment_lines" string="Lines">
+                                <field name="appointment_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="product_id"/>
+                                        <field name="qty"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="product_id"/>
+                                                <field name="qty"/> 
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                            <page name="other_info" string="Other Info">
+                                <group>
+                                    <field name="note"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+    </record>
+
+    <record id="view_hospital_appointment_kanban" model="ir.ui.view">
+            <field name="name">hospital.appointment.kanban</field>
+            <field name="model">hospital.appointment</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="reference" readonly="True"/>
+                    <field name="patient_id"/>
+                    <field name="date_appointment"/>
+                    <field name="note"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar"
+                                        t-att-src="kanban_image('hospital.patient','image',record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            Reference: <field name="reference"/>
+                                        </li>
+                                        <li>
+                                            Name: <field name="patient_id"/>
+                                        </li>
+                                        <li>
+                                            Date of birth: <field name="date_appointment"/>
+                                        </li>
+                                        <li>
+                                            Gender: <field name="note"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    
+    <record id="view_hospital_appointment_pivot" model="ir.ui.view">
+            <field name="name">hospital.appointment.pivot</field>
+            <field name="model">hospital.appointment</field>
+            <field name="arch" type="xml">
+                <pivot string="Appointments">
+                    <field name="reference" readonly="True"/>
+                    <field name="patient_id" type="row"/>
+                    <field name="date_appointment" type="date"/>
+                    <field name="note" type="row"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="action_hospital_appointment" model="ir.actions.act_window">
+            <field name="name">Appointments</field>
+            <field name="res_model">hospital.appointment</field>
+            <field name="view_mode">tree,kanban,form,pivot</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new appointment
+              </p>  
+            </field>
+    </record>
+
+    
+</odoo>

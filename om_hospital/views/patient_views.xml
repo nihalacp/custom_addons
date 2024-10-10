@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hospital_patient_tree" model="ir.ui.view">
+            <field name="name">hospital.patient.tree</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <tree string="Patients">
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field name="date_of_birth" optional="show"/>
+                    <field name="gender" optional="hide"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_hospital_patient_form" model="ir.ui.view">
+            <field name="name">hospital.patient.form</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <form string="Patients">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date_of_birth"/>
+                            </group>
+                            <group>
+                                <field name="ref"/>
+                                <field name="gender"/>
+                                <field name="active" invisible="1"/>
+                                <field name="tag_ids" widget="many2many_tags"/>
+                                <field name="email"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="documents" filename="document_name"/>
+                            <field name="document_name" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+    </record>
+
+    <record id="view_hospital_patient_kanban" model="ir.ui.view">
+            <field name="name">hospital.patient.kanban</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="date_of_birth"/>
+                    <field name="gender"/>
+                    <field name="image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar"
+                                        t-att-src="kanban_image('hospital.patient','image',record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            Name: <field name="name"/>
+                                        </li>
+                                        <li>
+                                            Date of birth: <field name="date_of_birth"/>
+                                        </li>
+                                        <li>
+                                            Gender: <field name="gender"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    
+    <record id="view_hospital_patient_pivot" model="ir.ui.view">
+            <field name="name">hospital.patient.pivot</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <pivot string="Patients">
+                    <field name="name" type="row"/>
+                    <field name="date_of_birth" type="date"/>
+                    <field name="gender" type="row"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+            <field name="name">hospital.patient.search</field>
+            <field name="model">hospital.patient</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Patient Name" filter_domain="['|',('name', 'ilike', self), ('ref', 'ilike', self)]"/>
+                    <field name="ref"/>
+                    <field name="date_of_birth" optional="show"/>
+                    <field name="gender" optional="hide"/>
+                    <filter name="filter_male" string="Male" domain="[('gender','=','male')]"/>
+                    <separator/>
+                    <filter name="filter_female" string="Female" domain="[('gender','=','female')]"/>
+                    <filter name="filter archived" string="Archived" domain="[('active', '=',False)]"/>
+                    <group expand="0" string="Group By">
+                    <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>
+                    </group>
+                </search>
+            </field>
+    </record>
+
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hospital.patient</field>
+            <field name="view_mode">tree,kanban,form,pivot</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('view_hospital_patient_tree')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('view_hospital_patient_kanban')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('view_hospital_patient_form')})]"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new patient
+              </p>  
+            </field>
+    </record>
+
+    
+</odoo>

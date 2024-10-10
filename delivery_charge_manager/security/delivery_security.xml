@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="module_category_delivery" model="ir.module.category">
+            <field name="name">Delivery</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_delivery_manager" model="res.groups">
+            <field name="name">Delivery Manager</field>
+            <field name="category_id" ref="delivery_charge_manager.module_category_delivery"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">this user will have access to delivery charge</field>
+        </record>
+    </data>
+</odoo>

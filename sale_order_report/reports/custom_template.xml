@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_inherit">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="sale_order_report.custom_layout">
+                    <div class="page" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100%; text-align: center;">
+                        <h5><strong>Quotation:</strong><t t-esc="o.name"/></h5>
+                        <p><strong>Customer:</strong> <span t-field="o.partner_id.name"/></p>
+                        <p><strong>Quotation Date:</strong> <t t-esc="o.date_order"/></p>
+                        <p><strong>Expiration:</strong><t t-esc="o.validity_date"/></p>
+                        <div class="page">
+                            <table  class="table table-bordered" width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th name="th_product"><strong>Product</strong></th>
+                                        <th name="th_product_image"><strong>Product Image</strong></th>
+                                        <th name="th_description"><strong>Description</strong></th>
+                                        <th name="th_taxes"><strong>Taxes</strong></th>
+                                        <th name="th_quantity" class="text-end"><strong>Qty</strong></th>
+                                        <th name="th_price_unit" class="text-end"><strong>Unit Price</strong></th>
+                                        <th name="th_amount" class="text-end"><strong>Amount</strong></th>    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.order_line" t-as="line">
+                                        <tr>
+                                            <td><span t-field="line.product_id"/></td>
+                                            <td style="width:100px;height:50px"><span t-field="line.image_field" t-options='{"widget": "image"}'/></td>
+                                            <td><span t-field="line.name"/></td>
+                                            <td><span t-field="line.tax_id"/></td>
+                                            <td><span t-field="line.product_uom_qty"/></td>
+                                            <td><span t-field="line.price_unit"/></td>
+                                            <td><span t-field="line.price_subtotal"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        <p><strong>Total Amount:</strong> <span t-field="o.amount_total"/></p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
