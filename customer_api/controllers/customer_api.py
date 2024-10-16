@@ -33,23 +33,4 @@ class CustomerAPIController(http.Controller):
 
 
 
-# from odoo import http
-# from odoo.http import request, Response
-
-# class CustomerAPI(http.Controller):
-
-#     @http.route('/api/customer', type='json', auth='public', methods=['POST'], csrf=False)
-#     def get_customer_by_phone(self, phone=None):
-#           if not phone:
-#                     return {'error': 'Phone number is required.'}
-
-#           customer = request.env['res.partner'].sudo().search([('phone', '=', phone)], limit=1)
-
-#           if not customer:
-#                     return {'error': 'Customer not found.'}
-
-#           return {
-#                     'name': customer.name,
-#                     'address': customer.contact_address,
-#           }
 
