@@ -7,7 +7,7 @@ class CustomerAPIController(http.Controller):
     @http.route('/api/customer_create', type='json', auth='public', methods=['POST'], csrf=False)
     def create_customer(self):
         try:
-            # Extract JSON request data using the correct method for Odoo 17
+            # Extract JSON request data
             data = request.get_json_data()
 
             # Check if required fields are provided
@@ -15,6 +15,19 @@ class CustomerAPIController(http.Controller):
                 return {
                     'success': False,
                     'error': 'Name and Email are required.'
+                }
+
+            # Check for existing customers with the same name or email
+            existing_customer = request.env['res.partner'].sudo().search([
+                '|',  # Search for either condition
+                ('email', '=', data['email']),
+                ('name', '=', data['name']),
+            ], limit=1)
+
+            if existing_customer:
+                return {
+                    'success': False,
+                    'error': 'Customer with this name or email already exists.'
                 }
 
             # Create a new company customer (res.partner)
